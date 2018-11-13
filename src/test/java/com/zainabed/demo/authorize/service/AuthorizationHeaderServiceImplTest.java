@@ -39,7 +39,7 @@ public class AuthorizationHeaderServiceImplTest {
 	@Before
 	public void setup() {
 		type = AuthorizationHeaderService.AUTH_TYPE_BEARER;
-		authHeader = "Auhtorization";
+		authHeader = AuthorizationHeaderService.AUTH_HEADER;
 		authHeaderType = "Bearer testvalue";
 		Mockito.when(request.getHeader(authHeader)).thenReturn(authHeaderType);
 	}

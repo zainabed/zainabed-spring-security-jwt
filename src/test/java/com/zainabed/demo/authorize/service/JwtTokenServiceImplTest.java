@@ -60,10 +60,7 @@ public class JwtTokenServiceImplTest {
 	@Test
 	public void shouldReturnValidJWTtoken(){
 		token = jwtTokenService.build(userDetail);
-		System.out.println("--------------------------------:" + token);
-		String[] tokenParts = token.split(".");
-		System.out.println("--------------------------------:" + tokenParts);
-		assertEquals(tokenParts.length, 2);
+		assertTrue(token.matches("[A-Za-z0-9\\-\\._~\\+\\/]+=*"));
 	}
 	
 	@Test
