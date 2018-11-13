@@ -1,10 +1,10 @@
 package com.zainabed.demo.authorize.service;
 
 import java.security.Key;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import com.zainabed.demo.authorize.entity.UserDetail;
 import com.zainabed.demo.authorize.exception.BadRequestException;
@@ -17,31 +17,32 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class JwtTokenServiceImpl implements JwtTokenService {
 
-	@Value("${jwt.secret.key}")
-	private String secretKeyValue = "dksjflkdsjfkldjsklfjdslkjflkdsjfkldsjk";
-	private Key secretKey;
+	@Value("${jwt.token.secret}")
+	private String tokenSecret;
 
-	public JwtTokenServiceImpl() {
-		setSecretKey();
-	}
+	@Value("${jwt.token.expiration}")
+	private String tokenExpiration;
 
-	private void setSecretKey() {
-		secretKey = Keys.hmacShaKeyFor(secretKeyValue.getBytes());
+	private Key getSecretKey() {
+		return Keys.hmacShaKeyFor(tokenSecret.getBytes());
 	}
 
 	@Override
 	public Claims parse(String token) throws BadRequestException {
-		Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
+		Jws<Claims> claims = Jwts.parser().setSigningKey(getSecretKey()).parseClaimsJws(token);
 		return claims.getBody();
 	}
 
 	@Override
 	public String build(UserDetail user) {
-		return Jwts.builder().setSubject(user.getUsername()).claim("roles", user.getRoles()).signWith(secretKey).compact();
+		Date now = new Date();
+		Date expirationTime = new Date(now.getTime() + Long.parseLong(tokenExpiration));
+		return Jwts.builder().setSubject(user.getUsername()).claim("roles", user.getRoles())
+				.setExpiration(expirationTime).signWith(getSecretKey()).compact();
 	}
 
 	public String generate() {
-		return Jwts.builder().setSubject("test").signWith(secretKey).compact();
+		return Jwts.builder().setSubject("test").signWith(getSecretKey()).compact();
 	}
 
 }
