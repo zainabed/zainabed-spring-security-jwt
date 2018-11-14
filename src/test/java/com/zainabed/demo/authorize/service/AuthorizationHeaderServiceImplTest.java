@@ -1,7 +1,9 @@
 package com.zainabed.demo.authorize.service;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.anyString;
+
+import java.util.Base64;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,7 +17,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.zainabed.demo.authorize.exception.BadRequestException;
+import com.zainabed.demo.authorize.entity.UserCredential;
+import com.zainabed.demo.authorize.util.TokenUtil;
 
 @RunWith(SpringRunner.class)
 public class AuthorizationHeaderServiceImplTest {
@@ -29,6 +32,10 @@ public class AuthorizationHeaderServiceImplTest {
 	String type;
 	String authHeaderType;
 	String authHeader;
+	String username;
+	String password;
+	String token;
+	UserCredential userCredentail;
 
 	@Configuration
 	@Import(AuthorizationHeaderServiceImpl.class)
@@ -42,6 +49,11 @@ public class AuthorizationHeaderServiceImplTest {
 		authHeader = AuthorizationHeaderService.AUTH_HEADER;
 		authHeaderType = "Bearer testvalue";
 		Mockito.when(request.getHeader(authHeader)).thenReturn(authHeaderType);
+
+		// Build token
+		username = "testusername";
+		password = "testpassword";
+		token = AuthorizationHeaderService.AUTH_TYPE_BASIC +  TokenUtil.buildBasicToken(username, password);
 	}
 
 	@Test
@@ -49,15 +61,23 @@ public class AuthorizationHeaderServiceImplTest {
 		assertNotNull(service.getValue(request, authHeaderType));
 	}
 
-	@Test(expected = BadRequestException.class)
-	public void shouldThrowExceptionForInvalidHeaderValue() {
+	@Test
+	public void shouldReturnNullForInvalidHeaderValue() {
 		Mockito.when(request.getHeader(authHeader)).thenReturn("testvalue");
-		service.getValue(request, authHeaderType);
+		assertNull(service.getValue(request, authHeaderType));
 	}
 
-	@Test(expected = BadRequestException.class)
-	public void shouldThrowExceptionForMissingAuthHeader() {
+	@Test
+	public void shouldReturnNullForMissingAuthHeader() {
 		Mockito.when(request.getHeader(authHeader)).thenReturn(null);
-		service.getValue(request, authHeaderType);
+		assertNull(service.getValue(request, authHeaderType));
+	}
+
+	@Test
+	public void shouldReturnUserCredentailFromToken() {
+		Mockito.when(request.getHeader(AuthorizationHeaderService.AUTH_HEADER)).thenReturn(token);
+		userCredentail = service.getBasicUserCredentials(request);
+		assertEquals(userCredentail.getUsername(), username);
+		assertEquals(userCredentail.getPassword(), password);
 	}
 }

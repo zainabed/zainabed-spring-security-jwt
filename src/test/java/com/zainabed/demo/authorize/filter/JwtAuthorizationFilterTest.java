@@ -4,6 +4,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.never;
 
 import java.io.IOException;
 
@@ -57,21 +58,20 @@ public class JwtAuthorizationFilterTest {
 	@MockBean
 	UsernamePasswordAuthenticationToken authentication;
 	String token;
-	
+
 	@Autowired
 	JwtAuthorizationFilter filter;
-	
+
 	@Configuration
 	@Import(JwtAuthorizationFilter.class)
-	static class Config{
-		
+	static class Config {
+
 	}
 
 	@Before
 	public void setup() throws BadRequestException {
 		token = "testtoken";
-		when(authHeaderService.getValue(any(), anyString()))
-				.thenReturn(token);
+		when(authHeaderService.getValue(any(), anyString())).thenReturn(token);
 		when(userDetailSerivce.buildAuthentication(any())).thenReturn(authentication);
 		when(jwtTokenService.parse(token)).thenReturn(claims);
 	}
@@ -80,11 +80,17 @@ public class JwtAuthorizationFilterTest {
 	public void shouldProcessFilter() throws ServletException, IOException {
 		filter.doFilter(request, response, filterChain);
 		verify(filterChain).doFilter(request, response);
+		verify(authHeaderService).getValue(any(), anyString());
+		verify(userDetailSerivce).buildAuthentication(any());
+		verify(jwtTokenService).parse(anyString());
 	}
-	
-	@Test(expected=BadRequestException.class)
-	public void shouldThrowBadRequestErrorForInvalidToken() throws ServletException, IOException{
-		when(jwtTokenService.parse(token)).thenThrow(BadRequestException.class);
+
+	public void shouldNotProcessTokenForInvalidToken() throws ServletException, IOException {
+		when(authHeaderService.getValue(any(), anyString())).thenReturn(null);
 		filter.doFilter(request, response, filterChain);
+		verify(filterChain).doFilter(request, response);
+		verify(authHeaderService, never()).getValue(any(), anyString());
+		verify(userDetailSerivce, never()).buildAuthentication(any());
+		verify(jwtTokenService, never()).parse(anyString());
 	}
 }
