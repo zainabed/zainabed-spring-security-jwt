@@ -62,9 +62,9 @@ public class AuthSecuirtyControlllerIT {
 				.andExpect(status().isOk());
 	}
 
-	@Test(expected=BadRequestException.class)
+	@Test
 	public void shouldThrowUnAuthErrorForTestUserPath() throws Exception {
-		mvc.perform(get("/test/user")).andDo(print());//.andExpect(status().is4xxClientError());
+		mvc.perform(get("/test/user")).andDo(print()).andExpect(status().is4xxClientError());
 	}
 
 	@Test

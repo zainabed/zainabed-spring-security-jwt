@@ -6,6 +6,8 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import com.zainabed.demo.authorize.entity.AuthenticationToken;
+import com.zainabed.demo.authorize.entity.UserCredential;
 import com.zainabed.demo.authorize.entity.UserDetail;
 import com.zainabed.demo.authorize.exception.BadRequestException;
 
@@ -43,6 +45,12 @@ public class JwtTokenServiceImpl implements JwtTokenService {
 
 	public String generate() {
 		return Jwts.builder().setSubject("test").signWith(getSecretKey()).compact();
+	}
+
+	@Override
+	public AuthenticationToken getToken(UserDetail userDetail) {
+		String token = build(userDetail);
+		return new AuthenticationToken(token, AuthorizationHeaderService.AUTH_TYPE_BEARER);
 	}
 
 }
