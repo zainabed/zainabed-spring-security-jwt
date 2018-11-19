@@ -1,11 +1,10 @@
 package com.zainabed.demo.authorize.service;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Component;
 
-import com.zainabed.demo.authorize.entity.UserCredential;
+import com.zainabed.demo.authorize.entity.UserCredentailImpl;
 
 /**
  * 
@@ -25,5 +24,11 @@ public interface AuthorizationHeaderService {
 	 * @return
 	 */
 	String getValue(HttpServletRequest request, String type);
-	UserCredential getBasicUserCredentials(HttpServletRequest request);
+	
+	/**
+	 * 
+	 * @param request
+	 * @return
+	 */
+	UserCredentailImpl getBasicUserCredentials(HttpServletRequest request);
 }

@@ -16,6 +16,11 @@ import com.zainabed.demo.authorize.filter.JwtAuthorizationFilter;
         jsr250Enabled = true,
         prePostEnabled = true
 )*/
+/**
+ * 
+ * @author shaikzai
+ *
+ */
 public class JwtWebSecuriy extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -24,6 +29,9 @@ public class JwtWebSecuriy extends WebSecurityConfigurerAdapter {
 	@Autowired
 	JwtAuthenticationEntryPoint jwtAuthEntryPoint;
 
+	/**
+	 * 
+	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().cors().disable().exceptionHandling().authenticationEntryPoint(jwtAuthEntryPoint).and()

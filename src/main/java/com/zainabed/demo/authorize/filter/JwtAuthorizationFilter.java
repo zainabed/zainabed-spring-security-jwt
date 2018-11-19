@@ -19,6 +19,11 @@ import com.zainabed.demo.authorize.service.UserDetailService;
 
 import io.jsonwebtoken.Claims;
 
+/**
+ * 
+ * @author shaikzai
+ *
+ */
 @Component
 public class JwtAuthorizationFilter extends OncePerRequestFilter  {
 
@@ -38,6 +43,9 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter  {
 
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
