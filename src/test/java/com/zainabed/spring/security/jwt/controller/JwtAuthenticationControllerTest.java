@@ -16,7 +16,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.zainabed.spring.security.jwt.DemoAuthorizeApplication;
+import com.zainabed.spring.security.jwt.SecurityJwtApplication;
 import com.zainabed.spring.security.jwt.controller.security.TestJwtWebSecurity;
 import com.zainabed.spring.security.jwt.service.AuthorizationHeaderService;
 
@@ -25,7 +25,7 @@ import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes={DemoAuthorizeApplication.class, TestJwtWebSecurity.class})
+@SpringBootTest(classes={SecurityJwtApplication.class, TestJwtWebSecurity.class})
 @AutoConfigureMockMvc
 public class JwtAuthenticationControllerTest {
 

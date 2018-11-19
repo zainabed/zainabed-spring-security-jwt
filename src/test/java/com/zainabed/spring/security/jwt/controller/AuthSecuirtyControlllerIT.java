@@ -17,7 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.zainabed.spring.security.jwt.DemoAuthorizeApplication;
+import com.zainabed.spring.security.jwt.SecurityJwtApplication;
 import com.zainabed.spring.security.jwt.controller.security.TestJwtWebSecurity;
 import com.zainabed.spring.security.jwt.entity.UserDetailImpl;
 import com.zainabed.spring.security.jwt.exception.BadRequestException;
@@ -25,7 +25,7 @@ import com.zainabed.spring.security.jwt.service.AuthorizationHeaderService;
 import com.zainabed.spring.security.jwt.service.JwtTokenService;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = { DemoAuthorizeApplication.class, AuthSecuirtyControlller.class , TestJwtWebSecurity.class})
+@SpringBootTest(classes = { SecurityJwtApplication.class, AuthSecuirtyControlller.class , TestJwtWebSecurity.class})
 @AutoConfigureMockMvc
 public class AuthSecuirtyControlllerIT {
 

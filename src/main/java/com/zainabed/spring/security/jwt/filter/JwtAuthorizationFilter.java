@@ -51,7 +51,6 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter  {
 			throws ServletException, IOException {
 		String token = authHeaderService.getValue(request, AuthorizationHeaderService.AUTH_TYPE_BEARER);
 		if (token != null) {
-			System.out.println("------------ Token---: " + token);
 			Claims claims = jwtTokenService.parse(token);
 			UsernamePasswordAuthenticationToken authentication = userDetailService.buildAuthentication(claims);
 			SecurityContextHolder.getContext().setAuthentication(authentication);

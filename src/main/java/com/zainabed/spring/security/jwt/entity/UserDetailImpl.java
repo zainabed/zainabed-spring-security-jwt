@@ -10,7 +10,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
 
 @Component
 @Scope("prototype")
@@ -27,14 +26,12 @@ public class UserDetailImpl implements UserDetail {
 	public void build(Claims claims) {
 		username = claims.getSubject();
 		roles = (List<String>) claims.get("roles");
-		System.out.println("--------------Role:" + roles.get(0));
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<SimpleGrantedAuthority> authorities = roles.stream().map(role -> new SimpleGrantedAuthority(role))
 				.collect(Collectors.toList());
-		System.out.println("----------- authorities:" + authorities);
 		return authorities;
 	}
 
