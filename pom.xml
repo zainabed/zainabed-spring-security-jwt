@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.zainabed.demo</groupId>
-	<artifactId>demo-authorize</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<groupId>com.zainabed.spring</groupId>
+	<artifactId>spring-security-jwt</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>demo-authorize</name>
-	<description>Demo project for Spring Boot</description>
+	<name>spring-security-jwt</name>
+	<description>JWT based authentication and authorization for Spring Boot projects</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -74,7 +74,7 @@
 			<version>2.2.0</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 	</dependencies>
 
 	<build>
@@ -87,4 +87,25 @@
 	</build>
 
 
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Shaikh Zainul Abdin</name>
+			<email>zainabed@gmail.com</email>
+			<organization>Zainabed</organization>
+			<organizationUrl>http://www.zainabed.com</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git://github.com/zainabed/spring-security-jwt.git</connection>
+		<developerConnection>scm:git:ssh://github.com/zainabed/spring-security-jwt.git</developerConnection>
+		<url>https://github.com/zainabed/spring-security-jwt/tree/master</url>
+	</scm>
 </project>
