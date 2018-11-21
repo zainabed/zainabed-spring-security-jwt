@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import com.zainabed.spring.security.jwt.entity.AuthenticationToken;
 import com.zainabed.spring.security.jwt.entity.UserCredential;
 import com.zainabed.spring.security.jwt.entity.UserDetail;
-import com.zainabed.spring.security.jwt.exception.BadRequestException;
+import com.zainabed.spring.security.jwt.exception.JwtAuthenticatioException;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -30,7 +30,7 @@ public class JwtTokenServiceImpl implements JwtTokenService {
 	}
 
 	@Override
-	public Claims parse(String token) throws BadRequestException {
+	public Claims parse(String token) throws JwtAuthenticatioException {
 		Jws<Claims> claims = Jwts.parser().setSigningKey(getSecretKey()).parseClaimsJws(token);
 		return claims.getBody();
 	}

@@ -2,9 +2,9 @@ package com.zainabed.spring.security.jwt.filter;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.never;
 
 import java.io.IOException;
 
@@ -23,14 +23,13 @@ import org.springframework.context.annotation.Import;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.zainabed.spring.security.jwt.exception.BadRequestException;
-import com.zainabed.spring.security.jwt.filter.JwtAuthorizationFilter;
+import com.zainabed.spring.security.jwt.exception.JwtAuthenticatioException;
+import com.zainabed.spring.security.jwt.security.JwtAuthenticationEntryPoint;
 import com.zainabed.spring.security.jwt.service.AuthorizationHeaderService;
 import com.zainabed.spring.security.jwt.service.JwtTokenService;
 import com.zainabed.spring.security.jwt.service.UserDetailService;
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
 
 @RunWith(SpringRunner.class)
 public class JwtAuthorizationFilterTest {
@@ -52,6 +51,9 @@ public class JwtAuthorizationFilterTest {
 
 	@MockBean
 	FilterChain filterChain;
+	
+	@MockBean
+	JwtAuthenticationEntryPoint entryPoint;
 
 	@MockBean
 	Claims claims;
@@ -70,7 +72,7 @@ public class JwtAuthorizationFilterTest {
 	}
 
 	@Before
-	public void setup() throws BadRequestException {
+	public void setup() throws JwtAuthenticatioException {
 		token = "testtoken";
 		when(authHeaderService.getValue(any(), anyString())).thenReturn(token);
 		when(userDetailSerivce.buildAuthentication(any())).thenReturn(authentication);

@@ -1,5 +1,6 @@
 package com.zainabed.spring.security.jwt.entity;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,10 +23,15 @@ public class UserDetailImpl implements UserDetail {
 	private List<String> roles;
 	private String username;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void build(Claims claims) {
 		username = claims.getSubject();
 		roles = (List<String>) claims.get("roles");
+		if (roles == null) {
+			roles = new ArrayList<>();
+			roles.add("ROLE_USER");
+		}
 	}
 
 	@Override
@@ -37,31 +43,31 @@ public class UserDetailImpl implements UserDetail {
 
 	@Override
 	public String getPassword() {
-		// TODO Auto-generated method stub
+
 		return password;
 	}
 
 	@Override
 	public List<String> getRoles() {
-		// TODO Auto-generated method stub
+
 		return roles;
 	}
 
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
+
 		return username;
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
+
 		return expired;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
+
 		return locked;
 	}
 
@@ -71,13 +77,13 @@ public class UserDetailImpl implements UserDetail {
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
+
 		return credentailExpired;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
+
 		return false;
 	}
 
