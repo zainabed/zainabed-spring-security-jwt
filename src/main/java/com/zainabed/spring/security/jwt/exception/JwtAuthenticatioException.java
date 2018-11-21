@@ -5,9 +5,14 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.BAD_REQUEST)
-public class BadRequestException extends AuthenticationException {
-	
-	public BadRequestException(String message) {
+public class JwtAuthenticatioException extends AuthenticationException {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4811778005138456060L;
+
+	public JwtAuthenticatioException(String message) {
 		super(message);
 	}
 

@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 import com.zainabed.spring.security.jwt.entity.AuthenticationToken;
 import com.zainabed.spring.security.jwt.entity.UserDetail;
-import com.zainabed.spring.security.jwt.exception.BadRequestException;
+import com.zainabed.spring.security.jwt.exception.JwtAuthenticatioException;
 
 import io.jsonwebtoken.Claims;
 
@@ -20,9 +20,9 @@ public interface JwtTokenService {
 	 * 
 	 * @param token
 	 * @return
-	 * @throws BadRequestException
+	 * @throws JwtAuthenticatioException
 	 */
-	Claims parse(String token) throws BadRequestException;
+	Claims parse(String token) throws JwtAuthenticatioException;
 
 	/**
 	 * 
