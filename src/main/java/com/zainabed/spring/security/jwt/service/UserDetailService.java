@@ -14,11 +14,6 @@ import io.jsonwebtoken.Jws;
 @Component
 public interface UserDetailService {
 
-	/**
-	 * 
-	 * @param claim
-	 * @return
-	 */
 	UsernamePasswordAuthenticationToken buildAuthentication(Claims claim);
 
 }

@@ -1,5 +1,28 @@
 package com.zainabed.spring.security.jwt.entity;
 
+/**
+ * Class represent JWT token. it is used to transmit authentication token, token
+ * type and refresh token information.
+ * 
+ * <p>
+ * Access token is used to authorize user on each application routes which are
+ * marked as secured. It contains User details as username and roles
+ * (credentials) to perform role based authorization.
+ * 
+ * </p>
+ * 
+ * <p>
+ * Token type for JWT authorization is Bearer and this realm is used in
+ * Authorization header for each secured route.
+ * </p>
+ * 
+ * <p>
+ * Refresh token is used to reissue expired access token.
+ * </p>
+ * 
+ * @author shaikzai
+ *
+ */
 public class AuthenticationToken {
 
 	private String token;

@@ -19,25 +19,11 @@ import io.jsonwebtoken.Jws;
 @Scope("prototype")
 public interface UserDetail extends UserDetails {
 
-	/**
-	 * 
-	 * @param climas
-	 */
 	void build(Claims climas);
 
-	/**
-	 * 
-	 */
 	String getUsername();
 
-	/**
-	 * 
-	 */
 	String getPassword();
 
-	/**
-	 * 
-	 * @return
-	 */
 	List<String> getRoles();
 }

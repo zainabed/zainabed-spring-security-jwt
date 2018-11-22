@@ -9,6 +9,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.zainabed.spring.security.jwt.filter.JwtAuthorizationFilter;
 
+
 /*@Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(

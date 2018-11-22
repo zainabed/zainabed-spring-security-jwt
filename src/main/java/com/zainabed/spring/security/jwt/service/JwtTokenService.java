@@ -16,32 +16,12 @@ import io.jsonwebtoken.Claims;
 @Component
 public interface JwtTokenService {
 
-	/**
-	 * 
-	 * @param token
-	 * @return
-	 * @throws JwtAuthenticatioException
-	 */
 	Claims parse(String token) throws JwtAuthenticatioException;
 
-	/**
-	 * 
-	 * @param userDetail
-	 * @return
-	 */
 	String build(UserDetail userDetail);
 
-	/**
-	 * 
-	 * @param userDetail
-	 * @return
-	 */
 	AuthenticationToken getToken(UserDetail userDetail);
 
-	/**
-	 * 
-	 * @return
-	 */
 	String generate();
 
 }

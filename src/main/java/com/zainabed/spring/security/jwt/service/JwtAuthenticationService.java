@@ -14,11 +14,6 @@ import com.zainabed.spring.security.jwt.entity.UserDetail;
 @Component
 public interface JwtAuthenticationService {
 
-	/**
-	 * 
-	 * @param userCredential
-	 * @return
-	 * @throws AuthenticationException
-	 */
+	
 	UserDetail authenticate(UserCredential userCredential) throws AuthenticationException;
 }
