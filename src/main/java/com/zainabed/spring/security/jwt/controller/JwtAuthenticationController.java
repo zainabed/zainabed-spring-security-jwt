@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.zainabed.spring.security.jwt.entity.AuthenticationToken;
 import com.zainabed.spring.security.jwt.entity.UserCredential;
 import com.zainabed.spring.security.jwt.entity.UserDetail;
+import com.zainabed.spring.security.jwt.exception.JwtAuthenticationException;
 import com.zainabed.spring.security.jwt.service.AuthorizationHeaderService;
 import com.zainabed.spring.security.jwt.service.JwtAuthenticationService;
 import com.zainabed.spring.security.jwt.service.JwtTokenService;
@@ -59,8 +60,12 @@ public class JwtAuthenticationController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public AuthenticationToken authenticate(HttpServletRequest request) {
-		UserCredential userCredential = authHeaderService.getBasicUserCredentials(request);
-		UserDetail userDetail = jwtAuthenticationService.authenticate(userCredential);
-		return jwtTokenService.getToken(userDetail);
+		try {
+			UserCredential userCredential = authHeaderService.getBasicUserCredentials(request);
+			UserDetail userDetail = jwtAuthenticationService.authenticate(userCredential);
+			return jwtTokenService.getToken(userDetail);
+		} catch (Exception exception) {
+			throw new JwtAuthenticationException("Invalid user credentials");
+		}
 	}
 }

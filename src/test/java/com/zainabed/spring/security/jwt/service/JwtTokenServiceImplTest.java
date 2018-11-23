@@ -21,6 +21,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.zainabed.spring.security.jwt.entity.AuthenticationToken;
 import com.zainabed.spring.security.jwt.entity.UserDetail;
+import com.zainabed.spring.security.jwt.exception.JwtAuthenticationException;
 import com.zainabed.spring.security.jwt.service.AuthorizationHeaderService;
 import com.zainabed.spring.security.jwt.service.JwtTokenService;
 import com.zainabed.spring.security.jwt.service.JwtTokenServiceImpl;
@@ -77,6 +78,11 @@ public class JwtTokenServiceImplTest {
 		token = jwtTokenService.build(userDetail);
 		claims = jwtTokenService.parse(token);
 		assertNotNull(claims);
+	}
+
+	@Test(expected=JwtAuthenticationException.class)
+	public void shouldThrowException(){
+		jwtTokenService.parse("testtoken");
 	}
 
 	@Test
