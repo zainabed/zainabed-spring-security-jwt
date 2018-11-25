@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.zainabed.spring.security.jwt.entity.AuthenticationToken;
-import com.zainabed.spring.security.jwt.entity.UserCredential;
 import com.zainabed.spring.security.jwt.entity.UserDetail;
-import com.zainabed.spring.security.jwt.exception.JwtAuthenticatioException;
+import com.zainabed.spring.security.jwt.exception.JwtAuthenticationException;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 
@@ -30,9 +30,14 @@ public class JwtTokenServiceImpl implements JwtTokenService {
 	}
 
 	@Override
-	public Claims parse(String token) throws JwtAuthenticatioException {
-		Jws<Claims> claims = Jwts.parser().setSigningKey(getSecretKey()).parseClaimsJws(token);
-		return claims.getBody();
+	public Claims parse(String token) throws JwtAuthenticationException {
+		try {
+			Jws<Claims> claims = Jwts.parser().setSigningKey(getSecretKey()).parseClaimsJws(token);
+			return claims.getBody();
+		} catch (JwtException exception) {
+			throw new JwtAuthenticationException(exception.getLocalizedMessage());
+		}
+
 	}
 
 	@Override
@@ -51,6 +56,12 @@ public class JwtTokenServiceImpl implements JwtTokenService {
 	public AuthenticationToken getToken(UserDetail userDetail) {
 		String token = build(userDetail);
 		return new AuthenticationToken(token, AuthorizationHeaderService.AUTH_TYPE_BEARER);
+	}
+
+	@Override
+	public AuthenticationToken getToken(String refreshToken) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

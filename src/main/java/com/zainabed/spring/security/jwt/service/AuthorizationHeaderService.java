@@ -8,7 +8,7 @@ import com.zainabed.spring.security.jwt.entity.UserCredentailImpl;
 
 /**
  * 
- * @author shaikzai
+ * @author Zainul Shaikh
  *
  */
 @Component
@@ -18,17 +18,9 @@ public interface AuthorizationHeaderService {
 	String AUTH_TYPE_BASIC = "Basic ";
 	String AUTH_HEADER = "Authorization";
 
-	/**
-	 * 
-	 * @param type
-	 * @return
-	 */
+	
 	String getValue(HttpServletRequest request, String type);
 	
-	/**
-	 * 
-	 * @param request
-	 * @return
-	 */
+	
 	UserCredentailImpl getBasicUserCredentials(HttpServletRequest request);
 }

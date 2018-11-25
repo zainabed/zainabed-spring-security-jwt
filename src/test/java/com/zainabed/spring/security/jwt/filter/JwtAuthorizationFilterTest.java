@@ -23,7 +23,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.zainabed.spring.security.jwt.exception.JwtAuthenticatioException;
+import com.zainabed.spring.security.jwt.exception.JwtAuthenticationException;
 import com.zainabed.spring.security.jwt.security.JwtAuthenticationEntryPoint;
 import com.zainabed.spring.security.jwt.service.AuthorizationHeaderService;
 import com.zainabed.spring.security.jwt.service.JwtTokenService;
@@ -72,7 +72,7 @@ public class JwtAuthorizationFilterTest {
 	}
 
 	@Before
-	public void setup() throws JwtAuthenticatioException {
+	public void setup() throws JwtAuthenticationException {
 		token = "testtoken";
 		when(authHeaderService.getValue(any(), anyString())).thenReturn(token);
 		when(userDetailSerivce.buildAuthentication(any())).thenReturn(authentication);
