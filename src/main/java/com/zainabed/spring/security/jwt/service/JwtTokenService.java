@@ -23,8 +23,7 @@ public interface JwtTokenService {
 	 * Validate access token, if access token if invalid then it throws
 	 * {@link JwtAuthenticationException}.
 	 * 
-	 * @param token
-	 *            Access token.
+	 * @param token Access token.
 	 * @return JWT claim object.
 	 * @throws JwtAuthenticationException Authentication exception
 	 */
