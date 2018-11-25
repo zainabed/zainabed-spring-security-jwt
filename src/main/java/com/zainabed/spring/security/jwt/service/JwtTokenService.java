@@ -23,17 +23,16 @@ public interface JwtTokenService {
 	 * Validate access token, if access token if invalid then it throws
 	 * {@link JwtAuthenticationException}.
 	 * 
-	 * @param token
-	 *            Access token.
+	 * @param token Access token.
 	 * @return JWT claim object.
-	 * @throws JwtAuthenticationException
+	 * @throws JwtAuthenticationException Authentication exception
 	 */
 	Claims parse(String token) throws JwtAuthenticationException;
 
 	/**
 	 * Generates JWT token from {@link UserDetail} object.
 	 * 
-	 * @param userDetail
+	 * @param userDetail UserDetail object
 	 * @return JWT token
 	 */
 	String build(UserDetail userDetail);
@@ -41,8 +40,8 @@ public interface JwtTokenService {
 	/**
 	 * Get {@link AuthenticationToken} from {@link UserDetail} object.
 	 * 
-	 * @param userDetail
-	 * @return
+	 * @param userDetail UserDetail object
+	 * @return JWT token
 	 */
 	AuthenticationToken getToken(UserDetail userDetail);
 
@@ -50,7 +49,7 @@ public interface JwtTokenService {
 	 * Generates {@link AuthenticationToken} from refresh token.
 	 * 
 	 * @param refreshToken
-	 * @return
+	 * @return Authentication object
 	 */
 	AuthenticationToken getToken(String refreshToken);
 

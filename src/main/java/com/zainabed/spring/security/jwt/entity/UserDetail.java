@@ -36,8 +36,7 @@ public interface UserDetail extends UserDetails {
 	 * Method is used to generate {@link UserDetail} object. It takes information
 	 * from JWT claims object and update username and roles from that claims.
 	 * 
-	 * @param climas
-	 *            JWT claims object
+	 * @param claims JWT claims object
 	 */
 	void build(Claims claims);
 
