@@ -40,13 +40,24 @@ public class JwtAuthenticationControllerTest {
 		apiPath = "/auth";
 		username = "testuser";
 		password = "testpassword";
-		authBasicHeader = AuthorizationHeaderService.AUTH_TYPE_BASIC
-				+ Base64.getEncoder().encodeToString((username + ":" + password).getBytes());
+		buildToken(username, password);
 	}
 
 	@Test
 	public void shouldReturnValidAuthToken() throws Exception {
 		mvc.perform(post(apiPath).header(AuthorizationHeaderService.AUTH_HEADER, authBasicHeader)).andDo(print())
 				.andExpect(status().isOk()).andExpect(jsonPath("$.token").exists());
+	}
+	
+	@Test
+	public void shouldReturnInValidAuthToken() throws Exception {
+		buildToken(username, "invalid");
+		mvc.perform(post(apiPath).header(AuthorizationHeaderService.AUTH_HEADER, authBasicHeader)).andDo(print())
+				.andExpect(status().is4xxClientError());
+	}
+	
+	void buildToken(String username, String password) {
+		authBasicHeader = AuthorizationHeaderService.AUTH_TYPE_BASIC
+				+ Base64.getEncoder().encodeToString((username + ":" + password).getBytes());
 	}
 }

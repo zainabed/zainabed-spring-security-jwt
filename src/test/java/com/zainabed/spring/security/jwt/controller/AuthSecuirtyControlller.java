@@ -1,6 +1,5 @@
 package com.zainabed.spring.security.jwt.controller;
 
-import org.springframework.http.HttpMethod;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,6 +23,6 @@ public class AuthSecuirtyControlller {
 	@Secured(value = "ROLE_ADMIN")
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String testAdmin() {
-		return "Test GET controller.";
+		return "Test GET controller ADMIN.";
 	}
 }

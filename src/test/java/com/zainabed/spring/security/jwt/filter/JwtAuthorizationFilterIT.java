@@ -28,7 +28,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.zainabed.spring.security.jwt.entity.UserDetailImpl;
-import com.zainabed.spring.security.jwt.exception.JwtAuthenticatioException;
+import com.zainabed.spring.security.jwt.exception.JwtAuthenticationException;
 import com.zainabed.spring.security.jwt.filter.JwtAuthorizationFilter;
 import com.zainabed.spring.security.jwt.service.AuthorizationHeaderService;
 import com.zainabed.spring.security.jwt.service.JwtTokenService;

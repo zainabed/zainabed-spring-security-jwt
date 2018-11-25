@@ -15,9 +15,14 @@ public class JwtAuthenticationServiceImpl implements JwtAuthenticationService {
 
 	@Override
 	public UserDetail authenticate(UserCredential userCredential) throws AuthenticationException {
-		UserDetailImpl userDetail = new UserDetailImpl();
-		userDetail.setUsername(userCredential.getUsername());
-		userDetail.setPassword(userCredential.getPassword());
+		String username = "testuser";
+		String password = "testpassword";
+		UserDetailImpl userDetail = null;
+		if (username.equals(userCredential.getUsername()) && password.equals(userCredential.getPassword())) {
+			userDetail = new UserDetailImpl();
+			userDetail.setUsername(userCredential.getUsername());
+			userDetail.setPassword(userCredential.getPassword());
+		}
 		return userDetail;
 	}
 

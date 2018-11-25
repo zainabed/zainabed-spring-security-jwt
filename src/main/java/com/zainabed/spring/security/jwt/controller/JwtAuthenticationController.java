@@ -11,10 +11,39 @@ import org.springframework.web.bind.annotation.RestController;
 import com.zainabed.spring.security.jwt.entity.AuthenticationToken;
 import com.zainabed.spring.security.jwt.entity.UserCredential;
 import com.zainabed.spring.security.jwt.entity.UserDetail;
+import com.zainabed.spring.security.jwt.exception.JwtAuthenticationException;
 import com.zainabed.spring.security.jwt.service.AuthorizationHeaderService;
 import com.zainabed.spring.security.jwt.service.JwtAuthenticationService;
 import com.zainabed.spring.security.jwt.service.JwtTokenService;
 
+/**
+ * This controller performs Basic authentication.
+ * 
+ * <p>
+ * It is part of Jwt Security module and by default it is turned off. Enable it
+ * by adding following property with value true
+ * </p>
+ *
+ * <pre class="code">
+ * jwt.authentication = true
+ * </pre>
+ * 
+ * Controller requires Basic Authentication realm. it should be passed user
+ * credentials like username and password into Authorization header with value
+ * merged with character : and encoded with Base64 encoding and prefixed by
+ * "Basic " realm.
+ * 
+ * <pre class="code">
+ *  Authorization: Basic "Base64 encoded username and password"
+ * </pre>
+ * 
+ * Controller let you to implement user authentication mechanism, to do so you
+ * have to implement {@code @JwtAuthenticationService} service and annotated
+ * with {@code @Service}.
+ * 
+ * @author Zainul Shaikh
+ *
+ */
 @RestController
 @RequestMapping(value = "/auth")
 @ConditionalOnProperty(prefix = "jwt", name = "authentication")
@@ -30,9 +59,13 @@ public class JwtAuthenticationController {
 	JwtTokenService jwtTokenService;
 
 	@RequestMapping(method = RequestMethod.POST)
-	public AuthenticationToken testUser(HttpServletRequest request) {
-		UserCredential userCredential = authHeaderService.getBasicUserCredentials(request);
-		UserDetail userDetail = jwtAuthenticationService.authenticate(userCredential);
-		return jwtTokenService.getToken(userDetail);
+	public AuthenticationToken authenticate(HttpServletRequest request) {
+		try {
+			UserCredential userCredential = authHeaderService.getBasicUserCredentials(request);
+			UserDetail userDetail = jwtAuthenticationService.authenticate(userCredential);
+			return jwtTokenService.getToken(userDetail);
+		} catch (Exception exception) {
+			throw new JwtAuthenticationException("Invalid user credentials");
+		}
 	}
 }
