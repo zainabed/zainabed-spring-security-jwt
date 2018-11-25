@@ -20,7 +20,7 @@ package com.zainabed.spring.security.jwt.entity;
  * Refresh token is used to reissue expired access token.
  * </p>
  * 
- * @author shaikzai
+ * @author Zainul Shaikh
  *
  */
 public class AuthenticationToken {

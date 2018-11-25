@@ -4,7 +4,7 @@ import java.util.Base64;
 
 /**
  * 
- * @author shaikzai
+ * @author Zainul Shaikh
  *
  */
 public class TokenUtil {

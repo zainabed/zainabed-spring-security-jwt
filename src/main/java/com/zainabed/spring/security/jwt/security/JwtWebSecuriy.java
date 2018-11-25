@@ -9,17 +9,16 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.zainabed.spring.security.jwt.filter.JwtAuthorizationFilter;
 
-
-/*@Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(
-        securedEnabled = true,
-        jsr250Enabled = true,
-        prePostEnabled = true
-)*/
 /**
+ * Enables web security for JWT authentication and authorization process. Class
+ * is extend from {@link WebSecurityConfigurerAdapter} and overrides configure
+ * method
  * 
- * @author shaikzai
+ * It adds authorization mechanism for all HTTP request of application and
+ * permits only authentication request.
+ * 
+ * 
+ * @author Zainul Shaikh
  *
  */
 public class JwtWebSecuriy extends WebSecurityConfigurerAdapter {
@@ -31,20 +30,15 @@ public class JwtWebSecuriy extends WebSecurityConfigurerAdapter {
 	JwtAuthenticationEntryPoint jwtAuthEntryPoint;
 
 	/**
-	 * 
+	 * Basic configuration from authentication and authorization. it also configure
+	 * JWT filter and exception handler.
 	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().cors().disable().exceptionHandling().authenticationEntryPoint(jwtAuthEntryPoint).and()
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-				.and().authorizeRequests()
-                .antMatchers(HttpMethod.OPTIONS,"/**")
-                .permitAll()
-                .antMatchers("/auth")
-                .permitAll()
-                .antMatchers("/**")
-                .authenticated()
-                .and().addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
+				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll().antMatchers("/auth").permitAll().antMatchers("/**")
+				.authenticated().and().addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 
 }

@@ -41,7 +41,7 @@ import com.zainabed.spring.security.jwt.service.JwtTokenService;
  * have to implement {@code @JwtAuthenticationService} service and annotated
  * with {@code @Service}.
  * 
- * @author Shaikh Zainul
+ * @author Zainul Shaikh
  *
  */
 @RestController

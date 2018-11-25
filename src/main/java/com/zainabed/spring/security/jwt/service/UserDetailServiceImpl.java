@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import com.zainabed.spring.security.jwt.entity.UserDetail;
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
 
 @Component
 public class UserDetailServiceImpl implements UserDetailService {

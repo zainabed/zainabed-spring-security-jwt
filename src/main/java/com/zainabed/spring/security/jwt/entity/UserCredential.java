@@ -7,7 +7,7 @@ package com.zainabed.spring.security.jwt.entity;
  * Interface is passed to {@code @JwtAuthenticationService} for authenticate
  * user details.
  * 
- * @author shaikzai
+ * @author Zainul Shaikh
  *
  */
 public interface UserCredential {

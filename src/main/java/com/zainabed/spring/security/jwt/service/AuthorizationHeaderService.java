@@ -8,7 +8,7 @@ import com.zainabed.spring.security.jwt.entity.UserCredentailImpl;
 
 /**
  * 
- * @author shaikzai
+ * @author Zainul Shaikh
  *
  */
 @Component

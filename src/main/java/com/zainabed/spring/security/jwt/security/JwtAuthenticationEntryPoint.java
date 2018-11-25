@@ -16,7 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * 
- * @author shaikzai
+ * @author Zainul Shaikh
  *
  */
 @Component
@@ -28,8 +28,6 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 	@Override
 	public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception)
 			throws IOException, ServletException {
-		System.out.println("------------Inside entry point with exception " + exception.getLocalizedMessage());
-		//response.sendError(HttpServletResponse.SC_UNAUTHORIZED, exception.getLocalizedMessage());
 		response.setStatus(HttpServletResponse.SC_FORBIDDEN);
 		response.setContentType(MediaType.APPLICATION_JSON_VALUE);
  

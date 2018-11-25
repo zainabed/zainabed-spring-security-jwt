@@ -24,7 +24,7 @@ import io.jsonwebtoken.Claims;
 
 /**
  * 
- * @author shaikzai
+ * @author Zainul Shaikh
  *
  */
 @Component
