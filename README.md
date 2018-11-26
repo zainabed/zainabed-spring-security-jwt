@@ -1,4 +1,4 @@
-# Spring Security JWT
+# Zainabed Spring Security JWT
 
 [![Build Status](https://dev.azure.com/zainabed/spring-security-jwt/_apis/build/status/zainabed.spring-security-jwt)](https://dev.azure.com/zainabed/spring-security-jwt/_build/latest?definitionId=1)
 
