@@ -52,8 +52,8 @@ Use your favorite Maven-compatible build tool to pull the dependencies from Mave
 ```xml
 <dependency>
   <groupId>com.zainabed.spring</groupId>
-  <artifactId>spring-security-jwt</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <artifactId>zainabed-spring-security-jwt</artifactId>
+  <version>1.0.0</version>
 </dependency>
 ```
 #### Configuration

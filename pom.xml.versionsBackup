@@ -6,7 +6,7 @@
 
 	<groupId>com.zainabed.spring</groupId>
 	<artifactId>zainabed-spring-security-jwt</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>zainabed-spring-security-jwt</name>
@@ -80,7 +80,7 @@
 
 	<build>
 		<plugins>
-
+			
 			<plugin>
 				<groupId>org.sonatype.plugins</groupId>
 				<artifactId>nexus-staging-maven-plugin</artifactId>
@@ -100,6 +100,11 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.0.1</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
 				<version>3.0.0</version>
 			</plugin>
@@ -113,32 +118,6 @@
 						<phase>verify</phase>
 						<goals>
 							<goal>sign</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<version>2.2.1</version>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<goals>
-							<goal>jar-no-fork</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.9.1</version>
-				<executions>
-					<execution>
-						<id>attach-javadocs</id>
-						<goals>
-							<goal>jar</goal>
 						</goals>
 					</execution>
 				</executions>
@@ -184,8 +163,8 @@
 	</distributionManagement>
 
 	<scm>
-		<connection>scm:git:git://github.com/zainabed/zainabed-spring-security-jwt.git</connection>
-		<developerConnection>scm:git:ssh://github.com/zainabed/zainabed-spring-security-jwt.git</developerConnection>
-		<url>https://github.com/zainabed/zainabed-spring-security-jwt/tree/master</url>
+		<connection>scm:git:git://github.com/zainabed/spring-security-jwt.git</connection>
+		<developerConnection>scm:git:ssh://github.com/zainabed/spring-security-jwt.git</developerConnection>
+		<url>https://github.com/zainabed/spring-security-jwt/tree/master</url>
 	</scm>
 </project>
