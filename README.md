@@ -91,6 +91,9 @@ Authentication is mapped at `"/auth"` route. To generate JWT token HTTP POST req
 
 
 ```
+URL: http://localhost:8080/auth
+
+Header:
 Authorization: Basic <username-value:password-value>
 ```
 ```
