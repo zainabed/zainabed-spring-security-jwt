@@ -6,7 +6,7 @@ Security JWT makes it easy to configure authentication and authorization securit
 
 Our objectives are
   - Application specific authentication
-  - Decople authentication & authorization
+  - Decouple authentication & authorization
   - Configurable JWT token based security
 
 ### Concept
@@ -87,7 +87,7 @@ To activate authentication define JWT authentication property and set value as t
 jwt.authentication=true
 ```
 
-Authentication is mapped at `"/auth"` route. To generate JWT token HTTP POST request should call "/auth" request with Basic Authentication header which should include user credentails which should be encoded with Base64
+Authentication is mapped at `"/auth"` route. To generate JWT token HTTP POST request should call "/auth" request with Basic Authentication header which should include user credentials which should be encoded with Base64
 
 
 ```
